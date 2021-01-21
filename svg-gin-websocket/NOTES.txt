@@ -1,0 +1,7 @@
+Status: working 
+
+Article: golang Gin framework with websocket
+URL: https://programmer.group/golang-gin-framework-with-websocket.html
+
+Article: Using Javascript with SVG
+URL: https://www.petercollingridge.co.uk/tutorials/svg/interactive/javascript/

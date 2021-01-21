@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+   <html lang="en">
+     <head>
+       <meta charset="UTF-8" />
+       <title>svg-websocket</title>
+     </head>
+     <body>
+       <h1>SVG image from websocket</h1> 
+       <div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 60" id="inline-svg">
+
+        </svg>
+       </div>
+      
+      <script> 
+  
+        function startWS() {
+          var ws = new WebSocket("ws://localhost:8000/text");
+          //Triggered when connection is open
+          ws.onopen = function (evt) {
+            console.log("Connection open ...");
+            ws.send("text message");
+          };
+          //Triggered when a message is received
+          ws.onmessage = function (evt) {
+            console.log("Received Message: " + evt.data);
+            embedSvgData(evt) 
+          };
+          //Triggered when connection is closed
+          ws.onclose = function (evt) {
+            console.log("Connection closed.");
+          };
+        }
+
+        function embedSvgData(evt) { 
+          var svg = document.getElementById("inline-svg");  
+          svg.innerHTML = evt.data; 
+        }   
+        // Start websocket 
+        startWS();
+      </script>
+    </body>
+  </html>
